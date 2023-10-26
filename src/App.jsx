@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import TodoItem from "./component/TodoItem";
 import TodoForm from "./component/TodoForm";
 import TodoEditForm from "./component/TodoEditForm";
+import Button from "./component/UI/Button";
+
+
 export default function Index() {
   const [todos, setTodos] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -13,6 +16,7 @@ export default function Index() {
       }
     }
   });
+
   const [todo, setTodo]   = useState("");
   const [isEditing, setEditing] = useState(false);
   const [editTodo, setEditTodo] = useState();
@@ -77,7 +81,9 @@ export default function Index() {
     setTodos(updateTodoItem);
   }
 
-
+  function todoRemove() {
+    
+  }
 
   return (
     <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
@@ -121,12 +127,9 @@ export default function Index() {
               <div className=" mb-4 items-center">
                     {todos.map((todo) => (
                       todo.completed ?
-                      <TodoItem 
-                        key={todo.id}
-                        todo={todo}
-                        taskCompleted={taskCompleted}
-                        todoEdit={todoEdit}
-                      />
+                      <li className="w-full text-grey-darkes" key={todo.id}>{todo.text}
+                        <Button type="button" text="Delete" onClick={todoRemove} />
+                      </li>
                       : ''
                   ))}    
               </div>  
