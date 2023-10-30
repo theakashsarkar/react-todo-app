@@ -25,7 +25,6 @@ export default function Index() {
     if (typeof window !== 'undefined') {
       localStorage.setItem("todos", JSON.stringify(todos));
     }
-    
   },[todos]);
 
   function handleInputChange(e) {
@@ -48,7 +47,6 @@ export default function Index() {
   }
 
   function taskCompleted(id) {
-    // console.log(todos[id]);
     const updateTodo = todos?.map((todo) => {
       if (id === todo.id) {
         return {...todo, completed: !todo.completed}
@@ -62,11 +60,13 @@ export default function Index() {
       setEditing(true);
       setEditTodo({...todo})
   }
+
   function handleEditInputChange(e) {
-    setEditTodo({ 
-      ...editTodo,
-      text: e.target.value,
-    });
+        setEditTodo({ 
+          ...editTodo,
+          text: e.target.value,
+        });
+
   }
   function handleEditFormSubmit(e) {
     e.preventDefault();
@@ -74,11 +74,14 @@ export default function Index() {
   }
 
   function handleUpdateTodo(id, updateTodo) {
-    const updateTodoItem = todos.map((todo) => {
-      return todo.id === id ? updateTodo : todo;
-    });
-    setEditing(false);
-    setTodos(updateTodoItem);
+
+    if (updateTodo.text !== "") {
+      const updateTodoItem = todos.map((todo) => {
+        return todo.id === id ? updateTodo : todo;
+      });
+      setTodos(updateTodoItem);
+    }
+    alert("empty todo not update");
   }
 
   function todoRemove() {
@@ -108,7 +111,7 @@ export default function Index() {
           </div>
           <div>
             <ul>
-              <div className=" mb-4 items-center">
+              <div className=" mb-4 items-center bg-red ">
                     {todos.map((todo) => (
                       todo.completed === false ? 
                         <TodoItem 

@@ -10,10 +10,17 @@ export default function TodoEditForm({ handleEditFormSubmit, handleEditInputChan
             className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" 
             placeholder="Edit Todo" 
           />
-          <button type="submit">
+          <button
+           className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded text-green border-green hover:bg-green" 
+           type="submit" 
+           disabled={editTodo === ""}
+            >
             Update
           </button>
-          <button type="" onClick={() => setEditing(false)}>
+          <button
+           className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded  text-green border-green hover:bg-green"
+           type="" 
+           onClick={() => setEditing(false)}>
             cancle
           </button>
         </div>
